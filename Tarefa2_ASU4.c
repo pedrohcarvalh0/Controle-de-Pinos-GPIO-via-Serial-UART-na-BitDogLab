@@ -12,27 +12,28 @@
 // Definição da porta GPIO do BUZZER
 #define BUZZER_PIN 21
 
-// Estrutura para representar uma nota musical 
-typedef struct { 
-    uint frequency;  // Frequência da nota (em Hz) 
-    uint duration_ms; // Duração da nota (em milissegundos) 
-} Note; 
- 
-// Melodia (notas e durações) 
-Note melody[] = { 
-    {262, 500},  // Dó (C4) 
-    {294, 500},  // Ré (D4) 
-    {330, 500},  // Mi (E4) 
-    {349, 500},  // Fá (F4) 
-    {392, 500},  // Sol (G4) 
-    {440, 500},  // Lá (A4) 
-    {494, 500},  // Si (B4) 
-    {523, 500},  // Dó (C5) 
-    {0, 500}     // Pausa 
-}; 
- 
-// Número de notas na melodia 
-int melody_length = sizeof(melody) / sizeof(Note); 
+// Estrutura para representar uma nota musical
+typedef struct
+{
+    uint frequency;   // Frequência da nota (em Hz)
+    uint duration_ms; // Duração da nota (em milissegundos)
+} Note;
+
+// Melodia (notas e durações)
+Note melody[] = {
+    {262, 500}, // Dó (C4)
+    {294, 500}, // Ré (D4)
+    {330, 500}, // Mi (E4)
+    {349, 500}, // Fá (F4)
+    {392, 500}, // Sol (G4)
+    {440, 500}, // Lá (A4)
+    {494, 500}, // Si (B4)
+    {523, 500}, // Dó (C5)
+    {0, 500}    // Pausa
+};
+
+// Número de notas na melodia
+int melody_length = sizeof(melody) / sizeof(Note);
 
 // Prótótipos das funções
 void init_leds_and_buzzer();
@@ -44,28 +45,45 @@ void play_note(uint pin, uint frequency, uint duration_ms);
 void activate_buzzer();
 void trigger_command(char command);
 
-void init_leds_and_buzzer() {
-
+void init_leds_and_buzzer()
+{
 }
 
-void activate_led(uint gpio) {
-
+void activate_led(uint gpio)
+{
+    disable_all_leds(); // Garante que apenas um LED esteja ligado
+    gpio_put(gpio, true);
+}
+void activate_all_leds()
+{
+    gpio_put(RED_LED_PIN, true);
+    gpio_put(GREEN_LED_PIN, true);
+    gpio_put(BLUE_LED_PIN, true);
+    printf("Todos os LEDs ativados\n");
+}
+void disable_all_leds()
+{
+    gpio_put(RED_LED_PIN, false);
+    gpio_put(GREEN_LED_PIN, false);
+    gpio_put(BLUE_LED_PIN, false);
 }
 
-void activate_all_leds() {
-
+void activate_all_leds()
+{
 }
 
-void disable_all_leds() {
-    
+void disable_all_leds()
+{
 }
 
-void pwm_init_buzzer(uint pin) {
-
+void pwm_init_buzzer(uint pin)
+{
 }
 
-void play_note(uint pin, uint frequency, uint duration_ms) {
-    if (frequency == 0) { // Pausa (silêncio)
+void play_note(uint pin, uint frequency, uint duration_ms)
+{
+    if (frequency == 0)
+    { // Pausa (silêncio)
         pwm_set_gpio_level(pin, 0);
         sleep_ms(duration_ms);
         return;
@@ -89,15 +107,16 @@ void play_note(uint pin, uint frequency, uint duration_ms) {
     sleep_ms(50); // Pequena pausa entre notas
 }
 
-void activate_buzzer() {
-
+void activate_buzzer()
+{
 }
 
-void trigger_command(char command) {
-
+void trigger_command(char command)
+{
 }
 
-int main () {
+int main()
+{
 
     stdio_init_all();
     init_leds_and_buzzer();
@@ -110,10 +129,12 @@ int main () {
     printf("W - Ativa TODOS os LEDs\n");
     printf("Z - Ativa o BUZZER\n");
     printf("X - Reinicia o Sistema\n");
-    
-    while (true) {
+
+    while (true)
+    {
         int ch = getchar_timeout_us(1000000); // Aguarda entrada por 1 segundo
-        if (ch != PICO_ERROR_TIMEOUT) {
+        if (ch != PICO_ERROR_TIMEOUT)
+        {
             trigger_command((char)ch);
         }
     }
