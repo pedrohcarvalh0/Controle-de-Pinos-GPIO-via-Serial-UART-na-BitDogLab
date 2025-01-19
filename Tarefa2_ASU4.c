@@ -12,6 +12,28 @@
 // Definição da porta GPIO do BUZZER
 #define BUZZER_PIN 21
 
+// Estrutura para representar uma nota musical 
+typedef struct { 
+    uint frequency;  // Frequência da nota (em Hz) 
+    uint duration_ms; // Duração da nota (em milissegundos) 
+} Note; 
+ 
+// Melodia (notas e durações) 
+Note melody[] = { 
+    {262, 500},  // Dó (C4) 
+    {294, 500},  // Ré (D4) 
+    {330, 500},  // Mi (E4) 
+    {349, 500},  // Fá (F4) 
+    {392, 500},  // Sol (G4) 
+    {440, 500},  // Lá (A4) 
+    {494, 500},  // Si (B4) 
+    {523, 500},  // Dó (C5) 
+    {0, 500}     // Pausa 
+}; 
+ 
+// Número de notas na melodia 
+int melody_length = sizeof(melody) / sizeof(Note); 
+
 // Prótótipos das funções
 void init_leds_and_buzzer();
 void activate_led(uint gpio);
