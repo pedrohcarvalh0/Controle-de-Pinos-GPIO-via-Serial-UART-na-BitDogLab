@@ -68,14 +68,6 @@ void disable_all_leds()
     gpio_put(BLUE_LED_PIN, false);
 }
 
-void activate_all_leds()
-{
-}
-
-void disable_all_leds()
-{
-}
-
 void pwm_init_buzzer(uint pin)
 {
 }
