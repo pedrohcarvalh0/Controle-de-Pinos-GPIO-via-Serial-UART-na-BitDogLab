@@ -40,6 +40,12 @@ void disable_all_leds() {
 
 void pwm_init_buzzer(uint pin) {
 
+ gpio_set_function(pin, GPIO_FUNC_PWM); 
+ uint slice_num = pwm_gpio_to_slice_num(pin); 
+ pwm_config config = pwm_get_default_config(); 
+ pwm_init(slice_num, &config, true); 
+ pwm_set_gpio_level(pin, 0);
+
 }
 
 void play_note(uint pin, uint frequency, uint duration_ms) {
