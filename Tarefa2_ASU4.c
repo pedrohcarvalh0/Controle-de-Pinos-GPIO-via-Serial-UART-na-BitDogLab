@@ -44,8 +44,22 @@ void play_note(uint pin, uint frequency, uint duration_ms);
 void activate_buzzer();
 void trigger_command(char command);
 
-void init_leds_and_buzzer() {
+void init_leds_and_buzzer() { // Inicializa as portas GPIO dos LEDs e do BUZZER
+    gpio_init(RED_LED_PIN);
+    gpio_set_dir(RED_LED_PIN, GPIO_OUT);
+    gpio_put(RED_LED_PIN, false);
 
+    gpio_init(GREEN_LED_PIN);
+    gpio_set_dir(GREEN_LED_PIN, GPIO_OUT);
+    gpio_put(GREEN_LED_PIN, false);
+
+    gpio_init(BLUE_LED_PIN);
+    gpio_set_dir(BLUE_LED_PIN, GPIO_OUT);
+    gpio_put(BLUE_LED_PIN, false);
+
+    gpio_init(BUZZER_PIN);
+    gpio_set_dir(BUZZER_PIN, GPIO_OUT);
+    gpio_put(BUZZER_PIN, false);
 }
 
 void activate_led(uint gpio) {
