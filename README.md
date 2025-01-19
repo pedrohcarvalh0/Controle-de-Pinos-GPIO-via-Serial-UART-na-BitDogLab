@@ -55,7 +55,7 @@ Este projeto permite controlar LEDs e um buzzer usando o Raspberry Pi Pico, com 
 3. Certifique-se de utilizar resistores adequados para proteger os LEDs.
 
 ```
-
+---
 ## 🚀 Compilação e Upload
 ```bash
 1. Clone o repositório do código:
@@ -71,8 +71,8 @@ Este projeto permite controlar LEDs e um buzzer usando o Raspberry Pi Pico, com 
    - Mantenha o botão `BOOTSEL` pressionado enquanto conecta o Pico ao computador.
    - Copie o arquivo `.uf2` gerado para a unidade que será montada.
 ```
+---
 ## 🎮 Comandos Disponíveis
-```plaintext
 
 Os comandos são enviados via UART. Veja a tabela abaixo:
 
@@ -85,8 +85,8 @@ Os comandos são enviados via UART. Veja a tabela abaixo:
 | O       | Desativa todos os LEDs       |
 | Z       | Reproduz a melodia no Buzzer 🎵 |
 | X       | Reinicia o sistema (BOOTSEL) 🔄 |
-```
-# 🎥 Demonstração
+---
+## 🎥 Demonstração
 ```plaintext
 https://www.youtube.com/watch?v=--p8wdIPwyo
 ```
