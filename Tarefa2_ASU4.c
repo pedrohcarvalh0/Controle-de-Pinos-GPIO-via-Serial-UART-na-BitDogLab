@@ -77,5 +77,23 @@ void trigger_command(char command) {
 
 int main () {
 
+    stdio_init_all();
+    init_leds_and_buzzer();
+
+    printf("Sistema iniciado. Aguardando comandos via UART...\n");
+    printf("\nComandos disponíveis:\n");
+    printf("R - Ativa o LED vermelho\n");
+    printf("G - Ativa o LED verde\n");
+    printf("B - Ativa o LED azul\n");
+    printf("W - Ativa TODOS os LEDs\n");
+    printf("Z - Ativa o BUZZER\n");
+    printf("X - Reinicia o Sistema\n");
+    
+    while (true) {
+        int ch = getchar_timeout_us(1000000); // Aguarda entrada por 1 segundo
+        if (ch != PICO_ERROR_TIMEOUT) {
+            trigger_command((char)ch);
+        }
+    }
     return 0;
 }
